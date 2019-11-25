@@ -1,0 +1,14 @@
+{    
+    "SINCEDB_PATH": "/tmp",
+
+    "HEADERS":{
+    	"Accept": "application/json",
+    	"Authorization": "Bearer xoxp-1234567890..."
+    },
+
+	"LOGTYPES":[
+		"user_login",
+		"user_logout",
+		"user_created"
+    ]
+}
