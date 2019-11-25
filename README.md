@@ -8,6 +8,8 @@ The tool will initially create entries in `times.log`for the `LOGTYPES` located 
 
 Once up and running, if you would like to add new actions to be logged, simply add the action to config.json. The tool will see that there is no entry for this action in times.log and create one with the earliest being 01/01/2000 @ 12:00am (UTC) (946684800) in order to pull all past logs related to that action.
 
+Slack Audit API allows for 9,999 results per API request. If you're a larger Org you may reach that limit on the inital backfill of log requests. In this case you'll need to incorporate [Pagination](https://api.slack.com/docs/pagination#cursors)
+
 For querying the standard [Slack Web API](https://api.slack.com/web), [@maus](https://github.com/maus-/slack-auditor) originally created a very similar tool.
 
 ## Requirements
@@ -21,7 +23,7 @@ Having said that, it's extremely unlikely you'll succeed in retrieving the `Bear
 ### Docker
 
 1. docker build -t slacklogger:latest .
-2. docker run slacklogger:latest .
+2. docker run slacklogger:latest
 
 ### From Source
 
