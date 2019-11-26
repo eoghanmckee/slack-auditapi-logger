@@ -12,6 +12,8 @@ Slack Audit API allows for 9,999 results per API request. If you're a larger Org
 
 For querying the standard [Slack Web API](https://api.slack.com/web), [@maus](https://github.com/maus-/slack-auditor) originally created a very similar tool.
 
+Finally, `guest_invite_added` and `app_resources_added` returns a 400 error. Until this is resolved by slack, they will be ommitted from this.
+
 ## Requirements
 
 1. Your organization must have the Enterprise Grid plan rolled out. Audit logs are not available on any other plans (Free, Standard, or Plus plans).

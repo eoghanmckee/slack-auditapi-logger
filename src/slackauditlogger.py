@@ -86,12 +86,10 @@ class SlackAuditLogger(object):
                 oldest = data['logs'][0][log_type]
 
             url = "https://api.slack.com/audit/v1/logs?oldest={}".format(oldest)
-
             querystring = {"Accept":"application/json","action":log_type,"limit":"9999"}
 
             r = requests.request("GET", url, headers=headers, params=querystring)
             jsonresponse = r.json()
-
             results.append(jsonresponse)
 
         return results
