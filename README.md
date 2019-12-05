@@ -10,6 +10,8 @@ Once up and running, if you would like to add new actions to be logged, simply a
 
 Slack Audit API allows for 9,999 results per API request. If you're a larger Org you may reach that limit on the inital backfill of log requests. In this case you'll need to incorporate [Pagination](https://api.slack.com/docs/pagination#cursors)
 
+Within in the output, each JSON object will represent a Slack event: `{"data":{Action1...}}{"data":{Action2...}...}`. So whatever output you point Logstash to, be it a SIEM, ElasticSearch etc. you'll be able to parse the logs based on the `"data"` object.
+
 For querying the standard [Slack Web API](https://api.slack.com/web), [@maus](https://github.com/maus-/slack-auditor) originally created a very similar tool.
 
 Finally, `guest_invite_added` and `app_resources_added` returns a 400 error. Until this is resolved by slack, they will be ommitted from this.

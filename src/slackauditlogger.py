@@ -98,7 +98,7 @@ class SlackAuditLogger(object):
     def get_latest_logs(self):
 
         logs = self.getlogs()
-        results = []
+        recentlogs = []
 
         for json_inner_array in logs:
             times = []
@@ -119,12 +119,17 @@ class SlackAuditLogger(object):
 
                 if datetime.utcfromtimestamp(float(json_data['date_create'])) > datetime.utcfromtimestamp(float(last_log_time)):
                     json_data['date_create'] = self._unix_to_pretty_utc(float(json_data['date_create']))
-                    results.append(json_data)
+                    recentlogs.append(json_data)
 
             with open(self.timeslog_path, 'w') as f:
                 f.write(json.dumps(data))
 
-        results = json.dumps(results)
+        jsonout = []
+        for objects in recentlogs:
+            jsonout.append({"data": objects})
+
+        results = json.dumps(jsonout)
+
         return results
 
 if __name__ == "__main__":
