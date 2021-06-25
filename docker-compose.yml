@@ -1,0 +1,6 @@
+version: '3'
+services:
+  auditapilogger:
+    build: .
+    volumes:
+    - ./src/tmp:/usr/share/logstash/src/tmp
