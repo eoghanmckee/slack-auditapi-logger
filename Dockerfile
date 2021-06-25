@@ -16,12 +16,15 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
     && rm -rf /usr/share/logstash/Python*
 
 USER logstash
-WORKDIR /usr/share/logstash
+RUN bin/logstash-plugin install logstash-output-syslog
 RUN rm -f ./pipeline/logstash.conf
 RUN echo 'http.host: "127.0.0.1"' > ./config/logstash.yml
 ADD pipeline/ ./pipeline/
 COPY src/*.py ./src/
 COPY src/requirements.txt ./src/
 COPY src/config/config.json ./src//config/
-RUN pip3.7 install --user -r ./src/requirements.txt
+COPY src/tmp/ ./src/tmp/
+USER root
+RUN pip3.7 install -r ./src/requirements.txt
+USER logstash
 ENV SLACK_AUDIT_PATH=/usr/share/logstash/src/slackauditlogger.py
